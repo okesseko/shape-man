@@ -4,7 +4,7 @@ import WalletBalance from "./WalletBalance";
 import NTFImage from "./NFTImage";
 import ShapeMan from "../artifacts/contracts/ShapeMan.sol/ShapeMan.json";
 
-const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS;
+const CONTRACT_ADDRESS = import.meta.env.VITE_CONTRACT_ADDRESS;
 
 function Home() {
   const provider = new ethers.providers.Web3Provider(window.ethereum);

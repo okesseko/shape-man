@@ -5,7 +5,7 @@ import questionImg from "../../img/question.svg";
 
 
 const NFTImage = ({ isMinted, tokenId, contract, signer, setTotalMinted }) => {
-  const imageIFPSId = process.env.PINATA_ID;
+  const imageIFPSId = import.meta.env.VITE_PINATA_ID;
   const metaDataURI = `${imageIFPSId}/${tokenId}.json`;
   const imageURI = `https://gateway.pinata.cloud/ipfs/${imageIFPSId}/${tokenId}.png`;
 
