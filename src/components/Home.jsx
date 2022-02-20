@@ -7,20 +7,34 @@ import ShapeMan from "../artifacts/contracts/ShapeMan.sol/ShapeMan.json";
 const CONTRACT_ADDRESS = import.meta.env.VITE_CONTRACT_ADDRESS;
 
 function Home() {
-  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
 
   const signer = provider.getSigner();
   const contract = new ethers.Contract(CONTRACT_ADDRESS, ShapeMan.abi, signer);
   const [totalMinted, setTotalMined] = useState(0);
+  const [networkId, setNetworkId] = useState(0);
 
   useEffect(() => {
     getCount();
+
+    provider.on("network", (newNetwork) => {
+      if (newNetwork.chainId !== 31337) {
+        console.log("your network is error");
+      }
+      setNetworkId(newNetwork.chainId);
+    });
+    getNetwork();
   }, []);
 
   async function getCount() {
     const count = await contract.count();
     console.log(count, "qwe");
     setTotalMined(parseInt(count));
+  }
+
+  async function getNetwork() {
+    const { chainId } = await provider.getNetwork();
+    console.log(chainId); // 42
   }
 
   return (
