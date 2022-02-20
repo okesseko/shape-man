@@ -9,7 +9,6 @@ function WalletBalance() {
   });
 
   const getBalance = async () => {
-    console.log("123");
     const [account] = await window.ethereum.request({
       method: "eth_requestAccounts",
     });
@@ -20,49 +19,29 @@ function WalletBalance() {
   };
 
   return (
-    <div
-      style={{
-        paddingTop: "4rem",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
+    <div className="flex  flex-col items-center justify-center pt-16 ">
       <a
         target="_blank"
-        style={{
-          fontSize: "1.5rem",
-        }}
+        className="text-2xl hover:text-red-400"
         href="https://chainlist.org/"
       >
         Click me to add chain (Mumbai)
       </a>
       <a
         target="_blank"
-        style={{
-          fontSize: "1.5rem",
-        }}
+        className="text-2xl hover:text-red-400"
         href="https://faucet.polygon.technology/"
       >
         Get test metic
       </a>
 
-      <h5 style={{ fontSize: "1.5rem" }}>
+      <h5 className="text-2xl">
         Your Balance:
         <br />
-        <span style={{ fontSize: "2rem", color: "#BFF0D4" }}>{balance}</span>
+        <span className="text-3xl text-[#BFF0D4]">{balance}</span>
       </h5>
       <button
-        style={{
-          margin: "1rem 0",
-          padding: "0.5rem",
-          fontSize: "1.5rem",
-          background: "#222",
-          color: "#F1F7ED",
-          borderRadius: "0.5rem",
-          border: "#F1F7ED 1px solid",
-        }}
+        className="my-4 rounded-lg border border-solid border-[#F1F7ED] bg-[#222] p-2 text-2xl text-[#F1F7ED]"
         onClick={getBalance}
       >
         Reload my Balance

@@ -26,9 +26,12 @@ function Home() {
     getNetwork();
   }, []);
 
+  useEffect(() => {
+    console.log(networkId, "hii");
+  }, [networkId]);
+
   async function getCount() {
     const count = await contract.count();
-    console.log(count, "qwe");
     setTotalMined(parseInt(count));
   }
 
@@ -40,19 +43,11 @@ function Home() {
   return (
     <div>
       <WalletBalance />
-      <h1 style={{ textAlign: "center" }}>
-        Total minted <span style={{ color: "#BFF0D4" }}>{totalMinted} </span>/
+      <h1 className="my-4 text-2xl text-center">
+        Total minted <span className="text-[#BFF0D4]">{totalMinted} </span>/
         1000
       </h1>
-      <div
-        style={{
-          padding: "2rem",
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "space-evenly",
-          gap: "2rem",
-        }}
-      >
+      <div className="flex flex-wrap justify-evenly gap-8 px-8">
         <div>
           <NTFImage
             isMinted={false}

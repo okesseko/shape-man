@@ -3,7 +3,6 @@ import { ethers } from "ethers";
 import loadingImg from "../../img/loading.gif";
 import questionImg from "../../img/question.svg";
 
-
 const NFTImage = ({ isMinted, tokenId, contract, signer, setTotalMinted }) => {
   const imageIFPSId = import.meta.env.VITE_PINATA_ID;
   const metaDataURI = `${imageIFPSId}/${tokenId}.json`;
@@ -37,26 +36,16 @@ const NFTImage = ({ isMinted, tokenId, contract, signer, setTotalMinted }) => {
   return (
     <div>
       <img
-        style={{ background: "white", borderRadius: "0.5rem" }}
+        className="rounded-lg bg-white"
         width={250}
         height={250}
         src={isMinted ? imageURI : loading ? loadingImg : questionImg}
       />
       <div>
-        <h5 style={{ marginBottom: "0.5rem", fontSize: "2rem" }}>
-          {isMinted ? `ID: ${tokenId}` : ""}
-        </h5>
+        <h5 className="mb-2 text-3xl">{isMinted ? `ID: ${tokenId}` : ""}</h5>
         {!isMinted ? (
           <button
-            style={{
-              width: "100%",
-              padding: "1rem",
-              fontSize: "1rem",
-              background: "#222",
-              color: "#F1F7ED",
-              borderRadius: "0.5rem",
-              border: "#F1F7ED 1px solid",
-            }}
+            className="w-full rounded-lg border border-solid border-[#F1F7ED] bg-[#222] p-4 text-base text-[#F1F7ED]"
             onClick={mintNFT}
             disabled={loading}
           >
@@ -64,15 +53,7 @@ const NFTImage = ({ isMinted, tokenId, contract, signer, setTotalMinted }) => {
           </button>
         ) : (
           <button
-            style={{
-              width: "100%",
-              padding: "1rem",
-              fontSize: "1rem",
-              background: "#222",
-              color: "#F1F7ED",
-              borderRadius: "0.5rem",
-              border: "#F1F7ED 1px solid",
-            }}
+            className="w-full rounded-lg border border-solid border-[#F1F7ED] bg-[#222] p-4 text-base text-[#F1F7ED]"
             onClick={getURI}
           >
             Already minted! Show URI
