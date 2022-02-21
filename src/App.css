@@ -8,7 +8,18 @@ button {
   color: #222;
 }
 
+
+
 #app {
   background-color: #222;
   min-height: 100vh;
+}
+
+#layout {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
