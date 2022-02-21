@@ -1,0 +1,16 @@
+<svg width="400" height="400" xmlns="http://www.w3.org/2000/svg">
+ <g>
+  <title>Layer 1</title>
+  <g id="svg_10">
+   <ellipse fill="#fff" cx="200.36447" cy="145.85897" id="svg_1" rx="70" ry="70" stroke="#000" stroke-width="5"/>
+   <rect stroke-width="5" fill="#ffffff" x="156.36447" y="232.35897" width="90" height="125" id="svg_3" stroke="#000000"/>
+   <rect transform="rotate(23.8186 112.864 270.859)" stroke-width="5" fill="#ffffff" stroke="#000000" x="97.36447" y="227.35897" width="31" height="87" id="svg_6"/>
+   <rect transform="rotate(-20.9323 288.864 270.859)" stroke-width="5" fill="#ffffff" stroke="#000000" x="273.36447" y="227.35897" width="31" height="87" id="svg_8"/>
+   <ellipse stroke-width="5" ry="10" rx="10" id="svg_4" cy="134.85897" cx="172.36447" stroke="#000000" fill="#ffffff"/>
+   <ellipse stroke-width="5" ry="10" rx="10" id="svg_5" cy="134.85897" cx="227.36447" stroke="#000000" fill="#ffffff"/>
+   <rect id="svg_7" height="1" width="30" y="173.35897" x="182.36447" stroke-width="5" stroke="#000000" fill="#ffffff"/>
+   <path transform="rotate(153.788 197.969 108.131)" stroke="#000000" id="svg_9" d="m124.90953,145.15966l0,-74.05637l146.11961,74.05637l-146.11961,0z" stroke-width="5" fill="#ffffff"/>
+  </g>
+ </g>
+
+</svg>
