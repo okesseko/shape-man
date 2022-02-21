@@ -3,7 +3,7 @@ import metamask from "../../img/metamask.png";
 
 const Install = () => {
   return (
-    <div className="flex h-screen flex-col items-center">
+    <div id="layout">
       <h3 className="mt-[10vh] text-[4rem]">You need to install the Wallet</h3>
       <a
         target="_blank"
