@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { ethers } from "ethers";
 import loadingImg from "../../img/loading.gif";
 import questionImg from "../../img/question.svg";
