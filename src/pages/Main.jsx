@@ -1,49 +1,36 @@
 import { useEffect, useState } from "react";
 import { ethers } from "ethers";
-import WalletBalance from "./WalletBalance";
-import NTFImage from "./NFTImage";
-import ShapeMan from "../artifacts/contracts/ShapeMan.sol/ShapeMan.json";
+import WalletBalance from "../components/WalletBalance";
+import NTFImage from "../components/NFTImage";
 
-const CONTRACT_ADDRESS = import.meta.env.VITE_CONTRACT_ADDRESS;
-
-function Home() {
-  const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
-
-  const signer = provider.getSigner();
-  const contract = new ethers.Contract(CONTRACT_ADDRESS, ShapeMan.abi, signer);
+function Home({ contract, provider, signer, account }) {
   const [totalMinted, setTotalMined] = useState(0);
-  const [networkId, setNetworkId] = useState(0);
+  const [balance, setBalance] = useState(0);
 
   useEffect(() => {
-    getCount();
-
-    provider.on("network", (newNetwork) => {
-      if (newNetwork.chainId !== 31337) {
-        console.log("your network is error");
-      }
-      setNetworkId(newNetwork.chainId);
-    });
-    getNetwork();
-  }, []);
-
-  useEffect(() => {
-    console.log(networkId, "hii");
-  }, [networkId]);
+    if (contract) getCount();
+  }, [contract]);
 
   async function getCount() {
     const count = await contract.count();
     setTotalMined(parseInt(count));
   }
 
-  async function getNetwork() {
-    const { chainId } = await provider.getNetwork();
-    console.log(chainId); // 42
-  }
+  useEffect(() => {
+    if (account) getBalance();
+    else setBalance(0);
+  }, [account]);
+
+  const getBalance = async () => {
+    console.log(account);
+    const balance = await provider.getBalance(account);
+    setBalance(ethers.utils.formatEther(balance));
+  };
 
   return (
-    <div>
-      <WalletBalance />
-      <h1 className="my-4 text-2xl text-center">
+    <div id="layout">
+      <WalletBalance balance={balance} getBalance={getBalance} />
+      <h1 className="my-4 text-center text-2xl">
         Total minted <span className="text-[#BFF0D4]">{totalMinted} </span>/
         1000
       </h1>
