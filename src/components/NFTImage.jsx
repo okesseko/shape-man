@@ -3,7 +3,14 @@ import { ethers } from "ethers";
 import loadingImg from "../../img/loading.gif";
 import questionImg from "../../img/question.svg";
 
-const NFTImage = ({ isMinted, tokenId, contract, signer, setTotalMinted }) => {
+const NFTImage = ({
+  disable,
+  isMinted,
+  tokenId,
+  contract,
+  signer,
+  successfulCallback,
+}) => {
   const imageIFPSId = import.meta.env.VITE_PINATA_ID;
   const metaDataURI = `${imageIFPSId}/${tokenId}.json`;
   const imageURI = `https://gateway.pinata.cloud/ipfs/${imageIFPSId}/${tokenId}.png`;
@@ -19,7 +26,7 @@ const NFTImage = ({ isMinted, tokenId, contract, signer, setTotalMinted }) => {
       });
       setLoading(true);
       await result.wait();
-      setTotalMinted();
+      successfulCallback();
     } catch (e) {
       window.alert(e.message);
       console.log(e);
@@ -45,9 +52,9 @@ const NFTImage = ({ isMinted, tokenId, contract, signer, setTotalMinted }) => {
         <h5 className="mb-2 text-3xl">{isMinted ? `ID: ${tokenId}` : ""}</h5>
         {!isMinted ? (
           <button
-            className="w-full rounded-lg border border-solid border-[#F1F7ED] bg-[#222] p-4 text-base text-[#F1F7ED]"
+            className="w-full rounded-lg border border-solid border-[#F1F7ED] bg-[#222] p-4 text-base text-[#F1F7ED] disabled:bg-gray-500 disabled:text-black"
             onClick={mintNFT}
-            disabled={loading}
+            disabled={loading || disable}
           >
             Mint
           </button>
