@@ -22,14 +22,17 @@ function Home({ contract, provider, signer, account }) {
   }, [account]);
 
   const getBalance = async () => {
-    console.log(account);
     const balance = await provider.getBalance(account);
     setBalance(ethers.utils.formatEther(balance));
   };
 
   return (
     <div id="layout">
-      <WalletBalance balance={balance} getBalance={getBalance} />
+      {account ? (
+        <WalletBalance balance={balance} getBalance={getBalance} />
+      ) : (
+        <p className="text-3xl">Please connect wallet</p>
+      )}
       <h1 className="my-4 text-center text-2xl">
         Total minted <span className="text-[#BFF0D4]">{totalMinted} </span>/
         1000
@@ -37,18 +40,21 @@ function Home({ contract, provider, signer, account }) {
       <div className="flex flex-wrap justify-evenly gap-8 px-8">
         <div>
           <NTFImage
+            disable={!account}
             isMinted={false}
             tokenId={totalMinted + 1}
             contract={contract}
             signer={signer}
-            setTotalMinted={getCount}
+            successfulCallback={() => {
+              getCount();
+              getBalance();
+            }}
           />
         </div>
         {Array(totalMinted)
           .fill(0)
           .map((_, i) => (
             <div key={i}>
-              {console.log(i)}
               <NTFImage
                 isMinted={true}
                 tokenId={i}
