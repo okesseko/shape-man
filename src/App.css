@@ -8,16 +8,14 @@ button {
   color: #222;
 }
 
-
-
 #app {
   background-color: #222;
   min-height: 100vh;
 }
 
 #layout {
-  width: 100vw;
-  height: 100vh;
+  min-height: calc(100vh - 68px);
+  padding: 2rem 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
