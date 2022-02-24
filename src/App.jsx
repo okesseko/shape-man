@@ -23,11 +23,13 @@ function App() {
         window.ethereum,
         "any"
       );
+      provider.pollingInterval = 50;
       setProvider(provider);
 
       provider.on("network", (newNetwork) => {
-        console.log(newNetwork.chainId);
-        if (newNetwork.chainId !== 31337) setAccount(null);
+        if (newNetwork.chainId.toString() !== import.meta.env.VITE_CHAIN_ID)
+          setAccount(null);
+        else getAccount();
       });
       connectWalletInRightNetwork(provider);
 
@@ -44,12 +46,17 @@ function App() {
 
   async function connectWalletInRightNetwork(provider) {
     const { chainId } = await provider.getNetwork();
-    if (chainId === 31337) {
-      const [account] = await window.ethereum.request({
-        method: "eth_requestAccounts",
-      });
-      if (account) setAccount(account);
+    console.log("hi,init", chainId, import.meta.env.VITE_CHAIN_ID);
+    if (chainId === import.meta.env.VITE_CHAIN_ID) {
+      getAccount();
     }
+  }
+
+  async function getAccount() {
+    const [account] = await window.ethereum.request({
+      method: "eth_requestAccounts",
+    });
+    if (account) setAccount(account);
   }
 
   return (
