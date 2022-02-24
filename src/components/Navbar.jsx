@@ -36,7 +36,10 @@ const Navbar = ({ account, setAccount }) => {
     const [account] = await window.ethereum.request({
       method: "eth_requestAccounts",
     });
-    if (account) setAccount(account);
+    if (account) {
+      console.log("hichange");
+      setAccount(account);
+    }
   }
 
   function ellipsisAccount(account) {
@@ -44,7 +47,7 @@ const Navbar = ({ account, setAccount }) => {
   }
 
   return (
-    <nav className="fixed flex w-screen justify-between bg-green-400">
+    <nav className="sticky top-0 flex justify-between bg-green-400">
       <Link to="/">
         <img className="ml-2" src={logo} width={150} />
       </Link>
@@ -57,10 +60,15 @@ const Navbar = ({ account, setAccount }) => {
         </li>
         <li className="my-3 mx-6 text-xl">
           <button
+            disabled={!window.ethereum}
             className="rounded-full bg-black px-4 py-2"
             onClick={changeNetwork}
           >
-            {account ? ellipsisAccount(account) : "Connect Wallet"}
+            {!window.ethereum
+              ? "Plz Install Wallet"
+              : account
+              ? ellipsisAccount(account)
+              : "Connect Wallet"}
           </button>
         </li>
       </ul>
