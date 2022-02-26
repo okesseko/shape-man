@@ -9,6 +9,8 @@ And final, website is deployed on the firebase.
 <span style="color:red">❗IMPORTANT❗ It is a test project. There are no real sales. </span>
 
 
+[Click me to see how it work](https://shape-man.okesseko.tk/)
+
 ## Start project
 Follow the step you can create your own NFT project.
 
