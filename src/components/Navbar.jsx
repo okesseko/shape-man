@@ -4,6 +4,7 @@ import logo from "../../img/logo.png";
 
 const Navbar = ({ account, setAccount }) => {
   async function changeNetwork() {
+    let rejectSwitchNet = false;
     try {
       await window.ethereum.request({
         method: "wallet_switchEthereumChain",
@@ -29,16 +30,19 @@ const Navbar = ({ account, setAccount }) => {
             ],
           });
         } catch (addError) {
-          console.log(addError);
+          rejectSwitchNet = true;
         }
+      } else {
+        rejectSwitchNet = true;
       }
     }
-    const [account] = await window.ethereum.request({
-      method: "eth_requestAccounts",
-    });
-    if (account) {
-      console.log("hichange");
-      setAccount(account);
+    if (!rejectSwitchNet) {
+      const [account] = await window.ethereum.request({
+        method: "eth_requestAccounts",
+      });
+      if (account) {
+        setAccount(account);
+      }
     }
   }
 
