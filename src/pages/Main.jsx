@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import WalletBalance from "../components/WalletBalance";
-import NTFImage from "../components/NFTImage";
+import MintNFT from "../components/MintNFT";
+import NFTImage from "../components/NFTImage";
 
-function Home({ contract, provider, signer, account }) {
+function Home({ contract, provider, account }) {
   const [totalMinted, setTotalMined] = useState(0);
   const [balance, setBalance] = useState(0);
 
   useEffect(() => {
     if (contract) getCount();
-  }, [contract]);
+  }, [contract, account]);
 
   async function getCount() {
     const count = await contract.count();
@@ -39,12 +40,10 @@ function Home({ contract, provider, signer, account }) {
       </h1>
       <div className="flex flex-wrap justify-evenly gap-8 px-8">
         <div>
-          <NTFImage
-            disable={!account}
+          <MintNFT
+            account={account}
             isMinted={false}
-            tokenId={totalMinted + 1}
             contract={contract}
-            signer={signer}
             successfulCallback={() => {
               getCount();
               getBalance();
@@ -55,13 +54,7 @@ function Home({ contract, provider, signer, account }) {
           .fill(0)
           .map((_, i) => (
             <div key={i}>
-              <NTFImage
-                isMinted={true}
-                tokenId={i}
-                contract={contract}
-                signer={signer}
-                setTotalMinted={getCount}
-              />
+              <NFTImage tokenId={i} contract={contract} />
             </div>
           ))}
       </div>
