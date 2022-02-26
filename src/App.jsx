@@ -14,7 +14,6 @@ const CONTRACT_ADDRESS = import.meta.env.VITE_CONTRACT_ADDRESS;
 function App() {
   const [provider, setProvider] = useState();
   const [contract, setContract] = useState();
-  const [signer, setSigner] = useState();
   const [account, setAccount] = useState();
 
   useEffect(() => {
@@ -39,14 +38,12 @@ function App() {
         ShapeMan.abi,
         signer
       );
-      setSigner(signer);
       setContract(contract);
     }
   }, []);
 
   async function connectWalletInRightNetwork(provider) {
     const { chainId } = await provider.getNetwork();
-    console.log("hi,init", chainId, import.meta.env.VITE_CHAIN_ID);
     if (chainId === import.meta.env.VITE_CHAIN_ID) {
       getAccount();
     }
@@ -67,12 +64,7 @@ function App() {
           <Route
             path="/"
             element={
-              <Home
-                account={account}
-                provider={provider}
-                contract={contract}
-                signer={signer}
-              />
+              <Home account={account} provider={provider} contract={contract} />
             }
           />
           <Route path="/about" element={<About />} />
