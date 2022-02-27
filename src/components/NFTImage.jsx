@@ -31,7 +31,7 @@ const NFTImage = ({ tokenId }) => {
       <div>
         <h5 className="mb-2 text-3xl">ID: {tokenId}</h5>
         <button
-          className="w-full rounded-lg border border-solid border-[#F1F7ED] bg-[#222] p-4 text-base text-[#F1F7ED]"
+          className="w-full rounded-lg bg-sky-200 p-4 text-base font-bold text-black"
           onClick={downloadImage}
         >
           Download image 😍

@@ -4,10 +4,10 @@ import metamask from "../../img/metamask.png";
 const Install = () => {
   return (
     <div id="layout">
-      <h3 className="mt-[10vh] text-[4rem]">You need to install the Wallet</h3>
+      <h3 className="mt-[5vh] text-[4rem]">You need to install the Wallet</h3>
       <a
         target="_blank"
-        className="mt-10 text-3xl"
+        className="mt-10 text-3xl underline transition-colors hover:text-green-400"
         href="https://metamask.io/download/"
       >
         Click me to install Meta Mask

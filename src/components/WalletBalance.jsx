@@ -9,13 +9,13 @@ function WalletBalance({ balance, getBalance }) {
         Get test metic
       </a>
       <h5 className="my-2 text-2xl">
-        Your Balance: <span className="text-[#BFF0D4]">{balance}</span>
+        Your Balance: <span className="text-green-400 font-bold">{balance}</span>
       </h5>
       <button
-        className="my-4 rounded-lg border border-solid border-[#F1F7ED] bg-[#222] p-2 text-2xl text-[#F1F7ED]"
+        className="my-4 rounded-lg border border-solid border-white bg-[#222] p-2 px-4 text-2xl text-white"
         onClick={getBalance}
       >
-        Reload my Balance
+        Reload Balance
       </button>
     </div>
   );

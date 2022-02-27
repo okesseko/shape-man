@@ -51,21 +51,21 @@ const Navbar = ({ account, setAccount }) => {
   }
 
   return (
-    <nav className="sticky top-0 flex justify-between bg-green-400">
+    <nav className="sticky top-0 flex justify-between bg-white">
       <Link to="/">
         <img className="ml-2" src={logo} width={150} />
       </Link>
-      <ul className="flex items-center">
-        <li className="my-3 mx-6 text-xl">
+      <ul className="flex items-center text-black">
+        <li className="my-3 mx-6 text-xl font-bold hover:underline">
           <Link to="/about">About</Link>
         </li>
-        <li className="my-3 mx-6 text-xl">
+        <li className="my-3 mx-6 text-xl font-bold hover:underline">
           <Link to="/install">Install</Link>
         </li>
         <li className="my-3 mx-6 text-xl">
           <button
             disabled={!window.ethereum}
-            className="rounded-full bg-black px-4 py-2"
+            className="rounded-full bg-[#222] px-4 py-2 text-white"
             onClick={changeNetwork}
           >
             {!window.ethereum

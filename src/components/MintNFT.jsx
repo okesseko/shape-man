@@ -30,7 +30,7 @@ const MintNFT = ({ account, contract, successfulCallback }) => {
         src={loading ? loadingImg : questionImg}
       />
       <button
-        className="mt-11 w-full rounded-lg border border-solid border-[#F1F7ED] bg-[#222] p-4 text-base text-[#F1F7ED] disabled:bg-gray-500 disabled:text-black"
+        className="mt-11 w-full rounded-lg bg-sky-200 p-4 text-base font-bold text-black disabled:bg-zinc-500 disabled:text-zinc-700"
         onClick={mintNFT}
         disabled={loading || !account}
       >
