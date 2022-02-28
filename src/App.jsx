@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {  Routes, Route } from "react-router-dom";
 import { ethers } from "ethers";
 import Install from "./pages/Install";
 import About from "./pages/About";
@@ -8,6 +8,7 @@ import Notfound from "./pages/404";
 import Navbar from "./components/Navbar";
 import ShapeMan from "./artifacts/contracts/ShapeMan.sol/ShapeMan.json";
 import "./App.css";
+import "./index.css";
 
 const CONTRACT_ADDRESS = import.meta.env.VITE_CONTRACT_ADDRESS;
 
@@ -58,20 +59,18 @@ function App() {
 
   return (
     <div id="app">
-      <BrowserRouter>
-        <Navbar account={account} setAccount={setAccount} />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Home account={account} provider={provider} contract={contract} />
-            }
-          />
-          <Route path="/about" element={<About />} />
-          <Route path="/install" element={<Install />} />
-          <Route path="*" element={<Notfound />} />
-        </Routes>
-      </BrowserRouter>
+      <Navbar account={account} setAccount={setAccount} />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Home account={account} provider={provider} contract={contract} />
+          }
+        />
+        <Route path="/about" element={<About />} />
+        <Route path="/install" element={<Install />} />
+        <Route path="*" element={<Notfound />} />
+      </Routes>
     </div>
   );
 
