@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../img/logo.png";
 
 const Navbar = ({ account, setAccount }) => {
+  const [isConnectWalletDisabled, setIsConnectWalletDisabled] = useState(false);
+
+  useEffect(() => {
+    setIsConnectWalletDisabled(isEthereumNotExist());
+  }, []);
+
+  function isEthereumNotExist() {
+    if (typeof window === "undefined") return true;
+    return !window.ethereum;
+  }
+
   async function changeNetwork() {
     let rejectSwitchNet = false;
     try {
@@ -64,11 +75,12 @@ const Navbar = ({ account, setAccount }) => {
         </li>
         <li className="my-3 mx-6 text-xl">
           <button
-            disabled={!window.ethereum}
+            suppressHydrationWarning
+            disabled={isConnectWalletDisabled}
             className="rounded-full bg-[#222] px-4 py-2 text-white"
             onClick={changeNetwork}
           >
-            {!window.ethereum
+            {isConnectWalletDisabled
               ? "Plz Install Wallet"
               : account
               ? ellipsisAccount(account)
