@@ -11,6 +11,8 @@ And final, website is deployed on the firebase.
 
 [Click me to see how it work](https://shape-man.okesseko.tk/)
 
+[Step by step mint tutorial](https://personal-website-dcard.okesseko.tk/post/2)
+
 ## Start project
 Follow the step you can create your own NFT project.
 
